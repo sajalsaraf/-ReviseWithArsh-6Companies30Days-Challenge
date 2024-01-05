@@ -1,0 +1,41 @@
+class Solution {
+public:
+    #define ll long long int
+    map<ll,ll>mp;
+    // ll dl,fg,nn;
+    ll dp[1001];
+    ll mod=1e9+7;
+    ll one=1;
+    ll n,delay,forget;
+    ll call(ll j)
+    {
+         if(j>n)
+         return 0;
+         if(j==n)
+         return 1;
+         if(j+delay>n)
+         return 1;
+         if(dp[j]!=-1)
+             return dp[j];
+         ll x=0,i;
+         for(i=j;i<=j+forget-1;i++)
+         {
+              if(i>=delay+j)
+              x=((x%mod)+(call(i)%mod))%mod;
+
+         }
+         // dp[j]=x;
+         if(i<=n)
+            return dp[j]=x;
+         else
+            return dp[j]=x+1;
+
+     }
+    
+     ll peopleAwareOfSecret(ll nn, ll delay1, ll forget1) {
+        n=nn;delay=delay1;forget=forget1;
+        memset(dp,-1,sizeof(dp));
+        return call(1);
+    }
+};
+

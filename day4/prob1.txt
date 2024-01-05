@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countDistinct(vector<int>& a, int k, int p) {
+        
+        int n=a.size();
+        int i=0;
+        int j=0;
+        int ans=0;
+        int ct=0;
+        map<int,int>m;
+        while(i<n and j<n and i>=j){
+            m[a[i]]++;
+            if(a[i]%p==0)
+                ct++;
+            while(ct>k){
+                if(a[j]%p==0)
+                    ct--;
+                j++;
+            }
+            ans+=i-j;
+            
+            i++;
+            
+        }
+        cout << ans << endl;
+        cout << m.size() << endl;
+        return ans+m.size();
+        
+    }
+};

@@ -1,0 +1,42 @@
+class Solution {
+public:
+map<char,string>m;
+vector<string>ans;
+
+
+    void call(int i,string s,string d)
+    {
+        if(i==d.size())
+        {
+            ans.push_back(s);
+            return ;
+        }
+
+
+
+        string ch=m[d[i]];
+        for(int k=0;k<ch.size();k++)
+        {
+            call(i+1,s+ch[k],d);
+        }
+
+    }
+    vector<string> letterCombinations(string d) {
+        if(d=="")
+        {
+           return {}; 
+        }
+        m['1']="1";
+        m['2']="abc";
+        m['3']="def";
+        m['4']="ghi";
+        m['5']="jkl";
+        m['6']="mno";
+        m['7']="pqrs";
+        m['8']="tuv";
+        m['9']="wxyz";
+        string s="";
+        call(0,s,d);
+        return ans;
+    }
+};

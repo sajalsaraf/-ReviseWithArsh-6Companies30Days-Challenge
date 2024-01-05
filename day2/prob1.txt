@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int k;
+    int n;
+    vector<vector<int>>ans;
+    void comb(int c,int sum,vector<int>&vis,int id)
+    {
+        if(c==k)
+        {
+            if(sum==n)
+            {
+                vector<int>v;
+                for(int i=0;i<vis.size();i++)
+                {
+                    if(vis[i]==1)
+                    v.push_back(i);
+                }
+                ans.push_back(v);
+            
+            }
+            return;
+
+
+        }
+
+        for(int i=id;i<=9;i++)
+        {
+            if(vis[i]==1)
+            continue;
+            vis[i]=1;
+            comb(c+1,sum+i,vis,i+1);
+            vis[i]=0;
+        }
+    }
+    vector<vector<int>> combinationSum3(int kk, int nn) {
+
+        k=kk;
+        n=nn;
+        vector<int>vis(10,0);
+        comb(0,0,vis,1);
+        return ans;
+        
+    }
+};
